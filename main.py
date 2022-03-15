@@ -1,6 +1,6 @@
 from turtle import Turtle, Screen
-from player import Player
-from ball import Ball
+from player import Player, PLAYER_STARTING_POSITION
+from ball import Ball, BALL_STARTING_POSITION
 from board import Board
 import time
 import keyboard
@@ -30,9 +30,10 @@ def end_game(result):
 
     if message == "yes":
         board.reset_board()
-        ball.goto(0, 0)
+        ball.goto(BALL_STARTING_POSITION)
         ball.move_step_x = abs(ball.move_step_x)
         ball.move_step_y = abs(ball.move_step_y)
+        player.goto(PLAYER_STARTING_POSITION)
     elif message == "no":
         is_game_on = False
 
@@ -50,13 +51,15 @@ while is_game_on:
         end_game(False)
 
     # Detect collisions with board blocks
-    for block in board.blocks: # type: Turtle
-        if (block.xcor() + block.shapesize()[1]*10 > ball.xcor() > block.xcor() - block.shapesize()[1]*10) and ball.distance(block) <= 20:
+    for block in board.blocks:  # type: Turtle
+        if (block.xcor() + block.shapesize()[1]*10 > ball.xcor() > block.xcor() - block.shapesize()[1]*10) \
+                and ball.distance(block) <= 20:
             ball.move_step_y *= -1
             board.blocks.remove(block)
             block.goto((block.xcor() + 1400), block.ycor())
             board.new_blocks.append(block)
-        elif (block.ycor() + block.shapesize()[0] * 10 > ball.ycor() > block.ycor() - block.shapesize()[0] * 10) and ball.distance(block) <= 20:
+        elif (block.ycor() + block.shapesize()[0] * 10 > ball.ycor() > block.ycor() - block.shapesize()[0] * 10) \
+                and ball.distance(block) <= 20:
             ball.move_step_x *= -1
             board.blocks.remove(block)
             block.goto((block.xcor() + 1400), block.ycor())

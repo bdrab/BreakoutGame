@@ -1,7 +1,7 @@
 from turtle import Turtle
 import random
 
-STARTING_POSITION = (0, -100)
+BALL_STARTING_POSITION = (0, -100)
 
 
 class Ball(Turtle):
@@ -10,7 +10,7 @@ class Ball(Turtle):
         self.shape("circle")
         self.penup()
         self.color("red")
-        self.goto(STARTING_POSITION)
+        self.goto(BALL_STARTING_POSITION)
         self.move_step_x = 10
         self.move_step_y = 10
         self.colors = ["red", "orange", "yellow", "green", "blue", "indigo", "purple"]

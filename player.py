@@ -1,5 +1,5 @@
 from turtle import Turtle
-STARTING_POSITION = (0, -280)
+PLAYER_STARTING_POSITION = (0, -280)
 
 
 class Player(Turtle):
@@ -8,7 +8,7 @@ class Player(Turtle):
         self.shape("square")
         self.shapesize(stretch_len=1, stretch_wid=4)
         self.penup()
-        self.goto(STARTING_POSITION)
+        self.goto(PLAYER_STARTING_POSITION)
         self.setheading(90)
 
     def go_left(self):

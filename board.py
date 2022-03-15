@@ -2,7 +2,7 @@ from turtle import Turtle
 import random
 
 
-class Board(Turtle):
+class Board:
     def __init__(self, levels):
         super().__init__()
         self.blocks = []
@@ -27,7 +27,7 @@ class Board(Turtle):
                 self.blocks.append(new_block)
 
     def reset_board(self):
-        for block in self.new_blocks: # type: Turtle
+        for block in self.new_blocks:  # type: Turtle
             block.goto((block.xcor() - 1400), block.ycor())
             self.blocks.append(block)
         self.new_blocks.clear()
